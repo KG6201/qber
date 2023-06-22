@@ -57,7 +57,8 @@ class ScheduleController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $schedule = Schedule::find($id);
+        return view('schedule.show', compact('schedule'));
     }
 
     /**
