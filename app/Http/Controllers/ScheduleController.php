@@ -66,7 +66,8 @@ class ScheduleController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $schedule = Schedule::find($id);
+        return view('schedule.edit', compact('schedule'));
     }
 
     /**
@@ -74,7 +75,24 @@ class ScheduleController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // バリデーション
+        $validator = Validator::make($request->all(), [
+            'description' => 'required | max:191',
+            'departure_time' => 'required',
+            'arrival_time'=>'required | after:start'
+        ]);
+        // バリデーション:エラー
+        if ($validator->fails()) {
+            return redirect()
+            ->route('schedule.edit')
+            ->withInput()
+            ->withErrors($validator);
+        }
+        // create()は最初からmodelに用意されている関数
+        // 戻り値は挿入されたレコードの情報
+        $result = Schedule::find($id)->update($request->all());
+        // ルーティング「schedule.index」にリクエスト送信（一覧ページに移動）
+        return redirect()->route('schedule.index');
     }
 
     /**
@@ -82,6 +100,7 @@ class ScheduleController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $result = Schedule::find($id)->delete();
+        return redirect()->route('schedule.index');
     }
 }
