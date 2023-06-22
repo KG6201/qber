@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::resource('schedule', ScheduleController::class);
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('schedule', ScheduleController::class);
+});
 
 Route::get('/', function () {
     return view('welcome');
