@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Validator;
 use App\Models\Schedule;
+use Auth;
 
 class ScheduleController extends Controller
 {
@@ -13,7 +14,7 @@ class ScheduleController extends Controller
      */
     public function index()
     {
-        $schedules = [];
+        $schedules = Schedule::getAllOrderByDepartureTime();
         return view('schedule.index',compact('schedules'));
     }
 
@@ -30,7 +31,25 @@ class ScheduleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // バリデーション
+        $validator = Validator::make($request->all(), [
+            'description' => 'required | max:191',
+            'departure_time' => 'required',
+            'arrival_time'=>'required | after:start'
+        ]);
+        // バリデーション:エラー
+        if ($validator->fails()) {
+            return redirect()
+            ->route('schedule.create')
+            ->withInput()
+            ->withErrors($validator);
+        }
+        // create()は最初からmodelに用意されている関数
+        // 戻り値は挿入されたレコードの情報
+        $data = $request->merge(['user_id' => Auth::user()->id])->all();
+        $result = Schedule::create($data);
+        // ルーティング「schedule.index」にリクエスト送信（一覧ページに移動）
+        return redirect()->route('schedule.index');
     }
 
     /**
