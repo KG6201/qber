@@ -13,8 +13,12 @@
           <form class="mb-6" action="{{ route('schedule.store') }}" method="POST">
             @csrf
             <div class="flex flex-col mb-4">
-              <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="description">連絡事項</label>
-              <input class="border py-2 px-3 text-grey-darkest" type="text" name="description" id="description">
+              <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="origin">出発地</label>
+              <input class="border py-2 px-3 text-grey-darkest" type="text" name="origin" id="origin">
+            </div>
+            <div class="flex flex-col mb-4">
+              <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="destination">目的地</label>
+              <input class="border py-2 px-3 text-grey-darkest" type="text" name="destination" id="destination">
             </div>
             <div class="flex flex-col mb-4">
               <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="departure_time">出発時刻</label>
@@ -23,6 +27,10 @@
             <div class="flex flex-col mb-4">
               <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="arrival_time">到着時刻</label>
               <input class="border py-2 px-3 text-grey-darkest" type="datetime-local" name="arrival_time" id="arrival_time">
+            </div>
+            <div class="flex flex-col mb-4">
+              <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="description">連絡事項</label>
+              <input class="border py-2 px-3 text-grey-darkest" type="text" name="description" id="description">
             </div>
             <button type="submit" class="w-full py-3 mt-6 font-medium tracking-widest text-white uppercase bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
               Create

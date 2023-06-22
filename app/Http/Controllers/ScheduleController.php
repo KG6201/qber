@@ -33,9 +33,11 @@ class ScheduleController extends Controller
     {
         // バリデーション
         $validator = Validator::make($request->all(), [
-            'description' => 'required | max:191',
+            'origin' => 'required | max:30',
+            'destination' => 'required | max:30',
             'departure_time' => 'required',
-            'arrival_time'=>'required | after:start'
+            'arrival_time'=>'required | after:start',
+            'description' => 'max:191',
         ]);
         // バリデーション:エラー
         if ($validator->fails()) {
@@ -77,9 +79,11 @@ class ScheduleController extends Controller
     {
         // バリデーション
         $validator = Validator::make($request->all(), [
-            'description' => 'required | max:191',
+            'origin' => 'required | max:30',
+            'destination' => 'required | max:30',
             'departure_time' => 'required',
-            'arrival_time'=>'required | after:start'
+            'arrival_time'=>'required | after:start',
+            'description' => 'max:191',
         ]);
         // バリデーション:エラー
         if ($validator->fails()) {

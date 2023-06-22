@@ -14,8 +14,12 @@
             @method('put')
             @csrf
             <div class="flex flex-col mb-4">
-              <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="description">連絡事項</label>
-              <input class="border py-2 px-3 text-grey-darkest" type="text" name="description" id="description" value="{{$schedule->description}}">
+              <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="origin">出発地</label>
+              <input class="border py-2 px-3 text-grey-darkest" type="text" name="origin" id="origin" value="{{$schedule->origin}}">
+            </div>
+            <div class="flex flex-col mb-4">
+              <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="destination">目的地</label>
+              <input class="border py-2 px-3 text-grey-darkest" type="text" name="destination" id="destination" value="{{$schedule->destination}}">
             </div>
             <div class="flex flex-col mb-4">
               <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="departure_time">出発時刻</label>
@@ -24,6 +28,10 @@
             <div class="flex flex-col mb-4">
               <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="arrival_time">出発時刻</label>
               <input class="border py-2 px-3 text-grey-darkest" type="datetime-local" name="arrival_time" id="arrival_time" value="{{$schedule->arrival_time}}">
+            </div>
+            <div class="flex flex-col mb-4">
+              <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="description">連絡事項</label>
+              <input class="border py-2 px-3 text-grey-darkest" type="text" name="description" id="description" value="{{$schedule->description}}">
             </div>
             <div class="flex justify-evenly">
               <a href="{{ url()->previous() }}" class="block text-center w-5/12 py-3 mt-6 font-medium tracking-widest text-black uppercase bg-gray-100 shadow-sm focus:outline-none hover:bg-gray-200 hover:shadow-none">

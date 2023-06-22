@@ -21,7 +21,8 @@
                 <td class="py-4 px-6 border-b border-grey-light">
                   <!-- 🔽 詳細画面へのリンク -->
                   <a href="{{ route('schedule.show',$schedule->id) }}">
-                    <h3 class="text-left font-bold text-lg text-grey-dark p-0.5">{{$schedule->description}}</h3>
+                    <h3 class="text-left font-bold text-lg text-grey-dark p-0.5">出発地：{{$schedule->origin}} ---> 目的地：{{$schedule->destination}}</h3>
+                    <h3 class="text-left font-bold text-lg text-grey-dark p-0.5">出発時刻：{{$schedule->departure_time}} ---> 到着時刻：{{$schedule->arrival_time}}</h3>
                   </a>
                   <div class="flex">
                     <form action="{{ route('schedule.edit',$schedule->id) }}" method="GET" class="text-left">
