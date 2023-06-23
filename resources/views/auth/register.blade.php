@@ -12,7 +12,7 @@
         <!-- Nickname -->
         <div>
             <x-input-label for="nickname" :value="__('Nickname')" />
-            <x-text-input id="nickname" class="block mt-1 w-full" type="text" name="nickname" :value="old('nickname')" required autocomplete="nickname" />
+            <x-text-input id="nickname" class="block mt-1 w-full" type="text" name="nickname" :value="old('nickname')" autocomplete="nickname" />
             <x-input-error :messages="$errors->get('nickname')" class="mt-2" />
         </div>
 
@@ -26,7 +26,7 @@
         <!-- Car Capacity -->
         <div>
             <x-input-label for="car_capacity" :value="__('Car Capacity')" />
-            <x-text-input id="car_capacity" class="block mt-1 w-full" type="text" name="car_capacity" :value="old('car_capacity')" required autocomplete="car_capacity" />
+            <x-text-input id="car_capacity" class="block mt-1 w-full" type="text" name="car_capacity" :value="old('car_capacity')" autocomplete="car_capacity" />
             <x-input-error :messages="$errors->get('car_capacity')" class="mt-2" />
         </div>
 
