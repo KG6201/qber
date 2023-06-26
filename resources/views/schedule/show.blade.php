@@ -49,10 +49,26 @@
               </p>
             </div>
             @include('common.errors')
-            <form class="mb-6" action="{{ route('schedule.index', $schedule->id) }}" method="GET">
+            <!-- reserve 状態で条件分岐 -->
+            @if($schedule->users()->where('user_id', Auth::id())->exists())
+            <!-- cancel ボタン -->
+            <form class="mb-6" action="{{ route('cancel', $schedule) }}" method="POST">
                 @csrf
                 <div class="flex justify-evenly">
-                <a href="{{ url()->previous() }}" class="block text-center w-5/12 py-3 mt-6 font-medium tracking-widest text-black uppercase bg-gray-100 shadow-sm focus:outline-none hover:bg-gray-200 hover:shadow-none">
+                <a href="{{ url('/schedule') }}" class="block text-center w-5/12 py-3 mt-6 font-medium tracking-widest text-black uppercase bg-gray-100 shadow-sm focus:outline-none hover:bg-gray-200 hover:shadow-none">
+                    戻る
+                </a>
+                <button type="submit" class="w-5/12 py-3 mt-6 font-medium tracking-widest text-white uppercase bg-gray-400 shadow-lg focus:outline-none hover:bg-gray-700 hover:shadow-none">
+                    キャンセル
+                </button>
+                </div>
+            </form>
+            @else
+            <!-- reserve ボタン -->
+            <form class="mb-6" action="{{ route('reserve', $schedule) }}" method="POST">
+                @csrf
+                <div class="flex justify-evenly">
+                <a href="{{ url('/schedule') }}" class="block text-center w-5/12 py-3 mt-6 font-medium tracking-widest text-black uppercase bg-gray-100 shadow-sm focus:outline-none hover:bg-gray-200 hover:shadow-none">
                     戻る
                 </a>
                 <button type="submit" class="w-5/12 py-3 mt-6 font-medium tracking-widest text-white uppercase bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
@@ -60,6 +76,7 @@
                 </button>
                 </div>
             </form>
+            @endif
           </div>
         </div>
       </div>

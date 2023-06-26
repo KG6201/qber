@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReserveController;
 use App\Http\Controllers\ScheduleController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 */
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('schedule', ScheduleController::class);
+    Route::post('schedule/{schedule}/reserve', [ReserveController::class, 'store'])->name('reserve');
+    Route::post('schedule/{schedule}/cancel', [ReserveController::class, 'destroy'])->name('cancel');
 });
 
 Route::get('/', function () {
