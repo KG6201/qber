@@ -30,6 +30,7 @@
                     <h3 class="text-left font-bold text-lg text-grey-dark p-0.5">出発時刻：{{$schedule->departure_time}} ---> 到着時刻：{{$schedule->arrival_time}}</h3>
                   </a>
                   <div class="flex">
+                    @if ($schedule->user_id === Auth::user()->id)
                     <form action="{{ route('schedule.edit',$schedule->id) }}" method="GET" class="text-left">
                       @csrf
                       <button type="submit" class="mr-2 ml-2 text-sm hover:bg-gray-200 hover:shadow-none text-white py-1 px-2 focus:outline-none focus:shadow-outline">
@@ -48,6 +49,7 @@
                         </svg>
                       </button>
                     </form>
+                    @endif
                   </div>
                 </td>
               </tr>
