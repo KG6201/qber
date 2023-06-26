@@ -19,4 +19,9 @@ class Schedule extends Model
     {
         return self::orderBy('departure_time', 'asc')->get();
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

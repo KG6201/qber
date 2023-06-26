@@ -21,6 +21,11 @@
                 <td class="py-4 px-6 border-b border-grey-light">
                   <!-- 🔽 詳細画面へのリンク -->
                   <a href="{{ route('schedule.show',$schedule->id) }}">
+                    @if ($schedule->user->nickname === Null)
+                    <p class="text-left text-grey-dark">運転手：{{$schedule->user->name}}</p>
+                    @else
+                    <p class="text-left text-grey-dark">運転手：{{$schedule->user->nickname}}</p>
+                    @endif
                     <h3 class="text-left font-bold text-lg text-grey-dark p-0.5">出発地：{{$schedule->origin}} ---> 目的地：{{$schedule->destination}}</h3>
                     <h3 class="text-left font-bold text-lg text-grey-dark p-0.5">出発時刻：{{$schedule->departure_time}} ---> 到着時刻：{{$schedule->arrival_time}}</h3>
                   </a>
