@@ -48,6 +48,20 @@
                 {{$schedule->description}}
               </p>
             </div>
+            <div class="flex flex-col mb-4">
+              <p class="mb-2 uppercase font-bold text-lg text-grey-darkest">予約者</p>
+              @foreach ($schedule->users()->get() as $user)
+                @if ($user->nickname === Null)
+                <p class="py-2 px-3 text-grey-darkest" id="reserving_user">
+                  {{$user->name}}
+                </p>
+                @else
+                <p class="py-2 px-3 text-grey-darkest" id="reserving_user">
+                  {{$user->nickname}}
+                </p>
+                @endif
+              @endforeach
+            </div>
             @include('common.errors')
             <!-- reserve 状態で条件分岐 -->
             @if($schedule->users()->where('user_id', Auth::id())->exists())
